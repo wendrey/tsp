@@ -29,7 +29,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	double cost, load = 0;
 	bool ok, done = false;
 	DNode v, nextNode;
-	DNodeBoolMap inTour;
+	DNodeBoolMap inTour(l.g);
 	vector <bool> carrying (l.k, false);
 	LpdTspSolution sol;
 
