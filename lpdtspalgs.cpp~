@@ -41,6 +41,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	// Adiciona o vértice inicial ao tour
 
 	inTour[l.depot] = true;
+	sol.cost = 0.0;
 	sol.tour.push_back(l.depot);
 	
 	// Adiciona os outros vértices enquanto o tour não estiver completo
@@ -127,6 +128,9 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	
 	// Verifica se é possível voltar ao depósito
 	// Retorna a solução viável encontrada
+	
+	cout << "Custo: " << sol.cost << endl;
+	cout << "Tour: " << sol.tour << endl;	
 	
 	for (OutArcIt e(l.g, sol.tour.back()); e != INVALID; ++e) {
 		if (l.g.target(e) == l.depot) {	
