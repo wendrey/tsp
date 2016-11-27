@@ -58,7 +58,6 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	
 		for (OutArcIt e(l.g, sol.tour.back()); e != INVALID; ++e) {
 
-			ok = false;
 			v = l.g.target(e);
 			
 			// Verifica se o nó já está no tour
@@ -95,7 +94,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		
 		// Verifica se chegou a uma solução inviável
 		
-		if (cost = -1)
+		if (cost == -1)
 			return false;
 			
 		// Adiciona o vértice ao tour
