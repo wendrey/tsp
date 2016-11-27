@@ -109,7 +109,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		// Coleta ou entrega o item referente ao vértice
 			
 		si = l.s[node];
-		ti = l.t[n	ode];	
+		ti = l.t[node];	
 			
 		if (si != 0) {
 			load += l.items[si-1].w;
