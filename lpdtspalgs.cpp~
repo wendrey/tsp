@@ -75,7 +75,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 			if (si != 0) {
 				if (l.items[si-1].w + load < l.capacity) {
-					if (l.weight[e] < cost || cost = -1) {
+					if (l.weight[e] < cost || cost == -1) {
 						nextNode = v;
 						cost = l.weight[e];
 					}
@@ -84,7 +84,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 			else if (ti != 0) {
 				if (carrying[ti-1]) {
-					if (l.weight[e] < cost || cost = -1) {
+					if (l.weight[e] < cost || cost == -1) {
 						nextNode = v;
 						cost = l.weight[e];
 					}			
@@ -121,7 +121,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			
 		// Verifica se o tour está completo
 			
-		if (sol.tour.size() == l.g.n)
+		if (sol.tour.size() == l.n)
 			done = true;	
 			
 	}
