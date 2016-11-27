@@ -24,8 +24,8 @@ bool naive(const LpdTspInstance &l, LpdTspSolution  &s, int tl);
 
 bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
-	clock_t t = clock();
-	int s, t;
+	clock_t st = clock();
+	int si, ti;
 	double cost, load = 0;
 	bool ok, done = false;
 	DNode v, nextNode;
@@ -49,7 +49,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	
 		// Verifica restrição de tempo
 		
-		if (tl < (clock() - t) / CLOCKS_PER_SEC)
+		if (tl < (clock() - st) / CLOCKS_PER_SEC)
 			return false;
 		
 		nextNode = NULL;
@@ -69,15 +69,15 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			// Se precisar coletar um item em v, verifica se pode carregar o item
 			// Se precisar entregar um item em v, verifica se possui o item
 
-			s = l.s[v];
-			t = l.t[v];
+			si = l.s[v];
+			ti = l.t[v];
 
-			if (s != 0)
-				if (l.item[s-1].w + load < l.capacity)
+			if (si != 0)
+				if (l.item[si-1].w + load < l.capacity)
 					ok = true;
 
-			if (t != 0)
-				if (carrying[t-1])
+			if (ti != 0)
+				if (carrying[ti-1])
 					ok = true;
 
 			// Para todos os vizinhos que pode seguir, guarda o de menor custo
@@ -104,17 +104,17 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 		// Coleta ou entrega o item referente ao vértice
 			
-		s = l.s[v];
-		t = l.t[v];	
+		si = l.s[v];
+		ti = l.t[v];	
 			
-		if (s != 0) {
-			load += l.item[s-1].w;
-			carrying[s-1] = true; 
+		if (si != 0) {
+			load += l.item[si-1].w;
+			carrying[si-1] = true; 
 		}
 		
-		if (t != 0) {
-			load -= l.item[t-1].w;
-			carrying[t-1] = false;	
+		if (ti != 0) {
+			load -= l.item[ti-1].w;
+			carrying[ti-1] = false;	
 		}
 			
 		// Verifica se o tour está completo
