@@ -24,8 +24,6 @@ bool naive(const LpdTspInstance &l, LpdTspSolution  &s, int tl);
 
 bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
-    return naive(l, s, tl);
-
 	clock_t st = clock();
 	int si, ti;
 	double cost, load = 0;
