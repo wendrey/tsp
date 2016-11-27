@@ -27,7 +27,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	clock_t st = clock();
 	int si, ti;
 	double cost, load = 0;
-	bool ok, done = false;
+	bool done = false;
 	DNode v, nextNode;
 	DNodeBoolMap inTour(l.g);
 	vector <bool> carrying (l.k, false);
@@ -52,7 +52,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		if (tl < (clock() - st) / CLOCKS_PER_SEC)
 			return false;
 		
-		nextNode = NULL;
+		cost = -1;
 	
 		// Encontra o vizinho de menor custo para o qual seguir
 	
@@ -68,32 +68,34 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			
 			// Se precisar coletar um item em v, verifica se pode carregar o item
 			// Se precisar entregar um item em v, verifica se possui o item
+			// Para todos os vizinhos que pode seguir, guarda o de menor custo
 
 			si = l.s[v];
 			ti = l.t[v];
 
-			if (si != 0)
-				if (l.items[si-1].w + load < l.capacity)
-					ok = true;
+			if (si != 0) {
+				if (l.items[si-1].w + load < l.capacity) {
+					if (l.weight[e] < cost || cost = -1) {
+						nextNode = v;
+						cost = l.weight[e];
+					}
+				}
+			}
 
-			if (ti != 0)
-				if (carrying[ti-1])
-					ok = true;
-
-			// Para todos os vizinhos que pode seguir, guarda o de menor custo
-			
-			if (ok) {
-				if (l.weight[e] < cost || !nextNode) {
-					nextNode = v;
-					cost = l.weight[e];
-				}			
+			else if (ti != 0) {
+				if (carrying[ti-1]) {
+					if (l.weight[e] < cost || cost = -1) {
+						nextNode = v;
+						cost = l.weight[e];
+					}			
+				}
 			}
 			
 		}
 		
 		// Verifica se chegou a uma solução inviável
 		
-		if (!nextNode)
+		if (cost = -1)
 			return false;
 			
 		// Adiciona o vértice ao tour
@@ -119,18 +121,12 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			
 		// Verifica se o tour está completo
 			
-		done = true;	
-		
-		for (DNodeIt n(l.g); n != INVALID; ++n) {
-			if (!inTour[n]) {
-				done = false;
-				break;
-			}
-		}
-	
+		if (sol.tour.size() == l.g.n)
+			done = true;	
+			
 	}
 	
-	// Verifica se é possível voltar so depósito
+	// Verifica se é possível voltar ao depósito
 	// Retorna a solução viável encontrada
 	
 	for (OutArcIt e(l.g, sol.tour.back()); e != INVALID; ++e) {
