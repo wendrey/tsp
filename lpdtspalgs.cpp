@@ -129,9 +129,6 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	// Verifica se é possível voltar ao depósito
 	// Retorna a solução viável encontrada
 	
-	cout << "Custo: " << sol.cost << endl;
-	cout << "Tour: " << sol.tour.front() << endl;	
-	
 	for (OutArcIt e(l.g, sol.tour.back()); e != INVALID; ++e) {
 		if (l.g.target(e) == l.depot) {	
 			s.cost = sol.cost;
