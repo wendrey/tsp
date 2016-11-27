@@ -14,6 +14,7 @@
 #include <lemon/list_graph.h>
 #include "mygraphlib.h"
 #include "lpdtspalgs.h"
+#include "time.h"
 
 bool naive(const LpdTspInstance &l, LpdTspSolution  &s, int tl);
 
@@ -128,21 +129,29 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		}
 	
 	}
-
+	
+	// Verifica se é possível voltar so depósito
 	// Retorna a solução viável encontrada
 	
-	s.cost = sol.cost;
-	s.tour = sol.tour;
+	for (IncEdgeIt e(l.g, sol.tour.back()); e != INVALID; ++e) {
+		if (l.g.target(e) == l.depot) {	
+			s.cost = sol.cost;
+			s.tour = sol.tour;
+		}
+	}
 
 	return false;
 
 }
 
 //------------------------------------------------------------------------------
-bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl)
-/* Implemente esta função, entretanto, não altere sua assinatura */
-{
-   return naive(l, s, tl);
+bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
+
+	
+
+
+   return false;
+
 }
 //------------------------------------------------------------------------------
 bool exact(const LpdTspInstance &l, LpdTspSolution  &s, int tl)
