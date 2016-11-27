@@ -74,7 +74,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			ti = l.t[v];
 
 			if (si != 0) {
-				if (l.items[si-1].w + load < l.capacity) {
+				if (l.items[si-1].w + load <= l.capacity) {
 					if (l.weight[e] < cost || cost == -1) {
 						nextNode = v;
 						cost = l.weight[e];
@@ -131,7 +131,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	
 	for (OutArcIt e(l.g, sol.tour.back()); e != INVALID; ++e) {
 		if (l.g.target(e) == l.depot) {	
-			s.cost = sol.cost;
+			s.cost = sol.cost + l.weight[e];
 			s.tour = sol.tour;
 		}
 	}
