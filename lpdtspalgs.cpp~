@@ -108,12 +108,12 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		ti = l.t[v];	
 			
 		if (si != 0) {
-			load += l.item[si-1].w;
+			load += l.items[si-1].w;
 			carrying[si-1] = true; 
 		}
 		
 		if (ti != 0) {
-			load -= l.item[ti-1].w;
+			load -= l.items[ti-1].w;
 			carrying[ti-1] = false;	
 		}
 			

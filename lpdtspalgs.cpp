@@ -56,7 +56,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	
 		// Encontra o vizinho de menor custo para o qual seguir
 	
-		for (IncEdgeIt e(l.g, sol.tour.back()); e != INVALID; ++e) {
+		for (OutArcIt e(l.g, sol.tour.back()); e != INVALID; ++e) {
 
 			ok = false;
 			v = l.g.target(e);
@@ -73,7 +73,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			ti = l.t[v];
 
 			if (si != 0)
-				if (l.item[si-1].w + load < l.capacity)
+				if (l.items[si-1].w + load < l.capacity)
 					ok = true;
 
 			if (ti != 0)
@@ -133,7 +133,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	// Verifica se é possível voltar so depósito
 	// Retorna a solução viável encontrada
 	
-	for (IncEdgeIt e(l.g, sol.tour.back()); e != INVALID; ++e) {
+	for (OutArcIt e(l.g, sol.tour.back()); e != INVALID; ++e) {
 		if (l.g.target(e) == l.depot) {	
 			s.cost = sol.cost;
 			s.tour = sol.tour;
