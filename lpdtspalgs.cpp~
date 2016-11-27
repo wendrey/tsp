@@ -120,7 +120,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			
 		// Verifica se o tour está completo
 			
-		if (sol.tour.size() == l.n)
+		if (sol.tour.size() == (unsigned) l.n)
 			done = true;	
 			
 	}
