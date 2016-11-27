@@ -28,7 +28,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	int si, ti;
 	double cost, load = 0;
 	bool done = false;
-	DNode v, nextNode;
+	DNode v, node;
 	DNodeBoolMap inTour(l.g);
 	vector <bool> carrying (l.k, false);
 	LpdTspSolution sol;
@@ -76,7 +76,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			if (si != 0) {
 				if (l.items[si-1].w + load <= l.capacity) {
 					if (l.weight[e] < cost || cost == -1) {
-						nextNode = v;
+						node = v;
 						cost = l.weight[e];
 					}
 				}
@@ -85,7 +85,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			else if (ti != 0) {
 				if (carrying[ti-1]) {
 					if (l.weight[e] < cost || cost == -1) {
-						nextNode = v;
+						node = v;
 						cost = l.weight[e];
 					}			
 				}
@@ -100,14 +100,14 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			
 		// Adiciona o vértice ao tour
 	
-		inTour[v] = true;		
-		sol.tour.push_back(v);
+		inTour[node] = true;		
+		sol.tour.push_back(node);
 		sol.cost += cost;
 
 		// Coleta ou entrega o item referente ao vértice
 			
-		si = l.s[v];
-		ti = l.t[v];	
+		si = l.s[node];
+		ti = l.t[node];	
 			
 		if (si != 0) {
 			load += l.items[si-1].w;
