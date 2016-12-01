@@ -39,7 +39,7 @@ public:
 	
 	LpdTspInstance l;
 
-	SampleDecoder();
+	SampleDecoder(LpdTspInstance &instance);
 	~SampleDecoder();
 
 	double decode(const std::vector< double >& chromosome) const;
