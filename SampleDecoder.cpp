@@ -44,11 +44,12 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 
 	// ----------
 	
+	int k = 0;
 	double cost = 0.0;
 	int penalty = 1000;
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
-	for (DNodeIt n(l.g), int k = 0; n != INVALID; ++n, k++)
+	for (DNodeIt n(l.g); n != INVALID; k++, ++n)
 		if (n != l.depot)
 			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
 	
@@ -105,7 +106,7 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 			load += l.items[l.s[tour[i]]].w;
 		if(load < (-1)*MY_EPS)
 			cost += penalty;
-		if(load > instance.capacity)
+		if(load > l.capacity)
 			cost += penalty;
 	}
 	

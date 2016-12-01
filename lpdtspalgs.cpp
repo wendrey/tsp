@@ -147,7 +147,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 // Heurística do BRKGA para obter solução
 
-std::vector<double> brkga(const LpdTspInstance &l, int tl) {
+const std::vector<double> & brkga(const LpdTspInstance &l, int tl) {
 
 	clock_t st = clock();		// Tempo máximo para rodar o algoritmo
 
@@ -199,7 +199,7 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
-	for (DNodeIt n(l.g), int k = 0; n != INVALID; ++n, k++)
+	for (int k = 0, DNodeIt n(l.g); n != INVALID; k++, ++n)
 		if (n != l.depot)
 			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
 	
@@ -256,7 +256,7 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			load += l.items[l.s[tour[i]]].w;
 		if(load < (-1)*MY_EPS)
 			return false;
-		if(load > instance.capacity)
+		if(load > l.capacity)
 			return false;
 	}
 
