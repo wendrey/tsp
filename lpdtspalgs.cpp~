@@ -181,7 +181,7 @@ const std::vector<double> & brkga(const LpdTspInstance &l, int tl) {
 	} while (generation < MAX_GENS || (tl < clock() - st / CLOCKS_PER_SEC));
 
 	// Retorna o melhor resultado obtido
-	return algorithm.getBestChromosome;
+	return algorithm.getBestChromosome();
 
 }
 
@@ -191,6 +191,7 @@ const std::vector<double> & brkga(const LpdTspInstance &l, int tl) {
 
 bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
+	int k = 0;
 	double cost = 0.0;
 
 	// Recupera o melhor resultado obtido pelo brkga
@@ -199,9 +200,12 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
-	for (DNodeIt n(l.g), int k = 0; n != INVALID; ++n, k++)
-		if (n != l.depot)
+	for (DNodeIt n(l.g); n != INVALID; ++n) {
+		if (n != l.depot) { 
 			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
+			k++;
+		}
+	}
 	
 	vector <DNode> tour;
 	tour.push_back(l.depot);

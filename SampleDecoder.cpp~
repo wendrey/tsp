@@ -49,9 +49,12 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	int penalty = 1000;
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
-	for (DNodeIt n(l.g); n != INVALID; k++, ++n)
-		if (n != l.depot)
+	for (DNodeIt n(l.g); n != INVALID; ++n) {
+		if (n != l.depot) { 
 			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
+			k++;
+		}
+	}
 	
 	vector <DNode> tour;
 	tour.push_back(l.depot);
