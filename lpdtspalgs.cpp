@@ -159,7 +159,7 @@ const std::vector<double> & brkga(const LpdTspInstance &l, int tl) {
 	const unsigned K = 3;		// number of independent populations
 	const unsigned MAXT = 2;	// number of threads for parallel decoding
 	
-	SampleDecoder decoder;			// initialize the decoder
+	SampleDecoder decoder(l);			// initialize the decoder
 	
 	const long unsigned rngSeed = 0;	// seed to the random number generator
 	MTRand rng(rngSeed);				// initialize the random number generator
