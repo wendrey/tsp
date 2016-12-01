@@ -13,8 +13,8 @@
 
 #include "SampleDecoder.h"
 
-SampleDecoder::SampleDecoder(LpdTspInstance &instance) {
-	l = instance;
+SampleDecoder::SampleDecoder(const LpdTspInstance &inst) {
+	l = inst;
 }
 
 SampleDecoder::~SampleDecoder() { }

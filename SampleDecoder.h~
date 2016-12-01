@@ -37,9 +37,9 @@
 class SampleDecoder {
 public:
 	
-	LpdTspInstance l;
-
-	SampleDecoder(LpdTspInstance &instance);
+	LpdTspInstance &l;
+	
+	SampleDecoder(const LpdTspInstance &inst);
 	~SampleDecoder();
 
 	double decode(const std::vector< double >& chromosome) const;
