@@ -255,9 +255,9 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 	for(int i = 0; i < (int)tour.size(); i++) {
 		if(l.t[tour[i]] > 0 )
-			load -= l.items[l.t[tour[i]]].w;
+			load -= l.items[l.t[tour[i]]-1].w;
 		if(l.s[tour[i]] > 0 )
-			load += l.items[l.s[tour[i]]].w;
+			load += l.items[l.s[tour[i]]-1].w;
 		if(load < (-1)*MY_EPS)
 			return false;
 		if(load > l.capacity)

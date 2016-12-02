@@ -475,10 +475,10 @@ SOLUTION_STATUS checkSolutionStatus(LpdTspInstance &instance,
    double load = 0.0;
    for(int i = 0; i < (int)sol.tour.size(); i++){
       if( instance.t[ sol.tour[i] ] > 0 ){
-         load = load - instance.items[ instance.t[ sol.tour[i] ] ].w;
+         load = load - instance.items[ instance.t[ sol.tour[i] ] -1].w;
       }
       if( instance.s[ sol.tour[i] ] > 0 ){
-         load = load + instance.items[ instance.s[ sol.tour[i] ] ].w;
+         load = load + instance.items[ instance.s[ sol.tour[i] ] -1].w;
       }
       if(load < (-1)*MY_EPS) return NEGATIVE_LOAD_ERROR;
       if(load > instance.capacity) return CAPACITY_EXCEDED;
