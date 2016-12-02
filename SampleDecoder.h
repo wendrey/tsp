@@ -37,7 +37,7 @@
 class SampleDecoder {
 public:
 	
-	LpdTspInstance l;
+	LpdTspInstance* l;
 	
 	SampleDecoder(const LpdTspInstance &inst);
 	~SampleDecoder();
