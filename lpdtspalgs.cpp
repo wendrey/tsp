@@ -201,6 +201,8 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
+	cout << "Cromosssomo: " << chromosome.size() << " Graph: " << l.n << endl;
+
 	for (DNodeIt n(l.g); n != INVALID; ++n) {
 		if (n != l.depot) { 
 			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
