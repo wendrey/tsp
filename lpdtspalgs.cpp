@@ -182,7 +182,8 @@ const std::vector<double> & brkga(const LpdTspInstance &l, int tl) {
 	} while (generation < MAX_GENS);
 
 	// Retorna o melhor resultado obtido
-	return algorithm.getBestChromosome();
+	
+	return algorithm.getBestChromosome;
 
 }
 
