@@ -238,14 +238,14 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 	for(int i = 1; i < (int)tour.size(); i++) {
 		if(l.s[tour[i]] > 0) {
-			if(!ss[l.s[tour[i]]] && !tt[l.s[tour[i]]])
-				ss[l.s[tour[i]]] = true;
+			if(!ss[l.s[tour[i]]-1] && !tt[l.s[tour[i]]-1])
+				ss[l.s[tour[i]]-1] = true;
 			else
 				return false;
 		}
 		else if(l.t[tour[i]] > 0) {
-			if(ss[l.t[tour[i]]] && !tt[l.t[tour[i]]])
-				tt[l.t[tour[i]]] = true;
+			if(ss[l.t[tour[i]]-1] && !tt[l.t[tour[i]]-1])
+				tt[l.t[tour[i]]-1] = true;
 			else
 				return false;
 		}
