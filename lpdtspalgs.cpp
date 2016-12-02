@@ -246,9 +246,6 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			else
 				return false;
 		}
-		else {
-				return false;
-		}
 	}
 
 	cout << "Ordem ok" << endl;
