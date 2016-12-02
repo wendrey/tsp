@@ -49,15 +49,15 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	int penalty = 1000;
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
-	for (DNodeIt n(l.g); n != INVALID; ++n) {
-		if (n != l.depot) { 
+	for (DNodeIt n(l->g); n != INVALID; ++n) {
+		if (n != l->depot) { 
 			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
 			k++;
 		}
 	}
 	
 	vector <DNode> tour;
-	tour.push_back(l.depot);
+	tour.push_back(l->depot);
 
 	for(std::vector<std::pair<double,DNode>>::const_iterator i = ranking.begin(); i != ranking.end(); ++i)	
 		tour.push_back(i->second);
@@ -65,31 +65,31 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	// Verifica se existe aresta ligando os vertices
 
 	for(int i = 0; i < (int) tour.size(); i++) {
-		OutArcIt o(l.g, tour[i]);
+		OutArcIt o(l->g, tour[i]);
 		for(; o != INVALID; ++o)
-			if(l.g.target(o) == tour[(i+1) % (int)tour.size()])
+			if(l->g.target(o) == tour[(i+1) % (int)tour.size()])
 				break;
 		if(o == INVALID)
 			cost += penalty;
 		else
-			cost += l.weight[o];
+			cost += l->weight[o];
 	}
 	
 	// Verifica a ordem de coleta e entrega dos itens
 	
-	vector<bool> ss(l.k, false);
-	vector<bool> tt(l.k, false);
+	vector<bool> ss(l->k, false);
+	vector<bool> tt(l->k, false);
 
 	for(int i = 1; i < (int)tour.size(); i++) {
-		if(l.s[tour[i]] > 0) {
-			if(!ss[l.s[tour[i]]] && !tt[l.s[tour[i]]])
-				ss[l.s[tour[i]]] = true;
+		if(l->s[tour[i]] > 0) {
+			if(!ss[l->s[tour[i]]] && !tt[l->s[tour[i]]])
+				ss[l->s[tour[i]]] = true;
 			else
 				cost += penalty;
 		}
-		else if(l.t[tour[i]] > 0) {
-			if(ss[l.t[tour[i]]] && !tt[l.t[tour[i]]])
-				tt[l.t[tour[i]]] = true;
+		else if(l->t[tour[i]] > 0) {
+			if(ss[l->t[tour[i]]] && !tt[l->t[tour[i]]])
+				tt[l->t[tour[i]]] = true;
 			else
 				cost += penalty;
 		}
@@ -103,13 +103,13 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	double load = 0.0;
 
 	for(int i = 0; i < (int)tour.size(); i++) {
-		if(l.t[tour[i]] > 0 )
-			load -= l.items[l.t[tour[i]]].w;
-		if(l.s[tour[i]] > 0 )
-			load += l.items[l.s[tour[i]]].w;
+		if(l->t[tour[i]] > 0 )
+			load -= l->items[l->t[tour[i]]-1].w;
+		if(l->s[tour[i]] > 0 )
+			load += l->items[l->s[tour[i]]-1].w;
 		if(load < (-1)*MY_EPS)
 			cost += penalty;
-		if(load > l.capacity)
+		if(load > l->capacity)
 			cost += penalty;
 	}
 	
