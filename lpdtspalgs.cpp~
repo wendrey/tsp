@@ -195,8 +195,6 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	int k = 0;
 	double cost = 0.0;
 
-	cout << "-------------------------------------------------" << endl;
-
 	// Recupera o melhor resultado obtido pelo brkga
 
 	std::vector<double> chromosome = brkga(l, tl);
@@ -216,6 +214,9 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	for(std::vector<std::pair<double,DNode>>::const_iterator i = ranking.begin(); i != ranking.end(); ++i)	
 		tour.push_back(i->second);
 	
+	cout << "-------------------------------------------------" << endl;
+	return false;
+
 	// Verifica se existe aresta ligando os vertices
 
 	for(int i = 0; i < (int) tour.size(); i++) {
