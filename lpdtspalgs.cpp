@@ -157,7 +157,7 @@ const std::vector<double> brkga(const LpdTspInstance &l, int tl) {
 	const double pm = 0.10;		// fraction of population to be replaced by mutants
 	const double rhoe = 0.70;	// probability that offspring inherit an allele from elite parent
 	const unsigned K = 3;		// number of independent populations
-	const unsigned MAXT = 2;	// number of threads for parallel decoding
+	const unsigned MAXT = 1;	// number of threads for parallel decoding
 	
 	SampleDecoder decoder(l);			// initialize the decoder
 	
