@@ -195,6 +195,8 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	int k = 0;
 	double cost = 0.0;
 
+	cout << "-------------------------------------------------" << endl;
+
 	// Recupera o melhor resultado obtido pelo brkga
 
 	std::vector<double> chromosome = brkga(l, tl);
