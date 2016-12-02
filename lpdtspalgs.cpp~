@@ -168,9 +168,9 @@ const std::vector<double> brkga(const LpdTspInstance &l, int tl) {
 	BRKGA< SampleDecoder, MTRand > algorithm(n, p, pe, pm, rhoe, decoder, rng, K, MAXT);
 	
 	unsigned generation = 0;		// current generation
-	const unsigned X_INTVL = 20;	// exchange best individuals at every 20 generations
+	const unsigned X_INTVL = 100;	// exchange best individuals at every 20 generations
 	const unsigned X_NUMBER = 3;	// exchange top 3 best
-	const unsigned MAX_GENS = 100;	// run for 100 gens
+	const unsigned MAX_GENS = 1000;	// run for 100 gens
 	
 	do {
 		cout << "BRKGA " << generation << endl;
@@ -179,7 +179,7 @@ const std::vector<double> brkga(const LpdTspInstance &l, int tl) {
 		if((++generation) % X_INTVL == 0) {
 			algorithm.exchangeElite(X_NUMBER);	// exchange top individuals
 		}
-	} while (generation < MAX_GENS);
+	} while (generation < MAX_GENS || (tl < (clock() - st) / CLOCKS_PER_SEC));
 
 	// Retorna o melhor resultado obtido
 	return algorithm.getBestChromosome();
@@ -208,9 +208,6 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		}
 	}
 	
-	cout << "-------------------------------------------------" << endl;
-	return false;
-
 	vector <DNode> tour;
 	tour.push_back(l.depot);
 
