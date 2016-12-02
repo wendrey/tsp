@@ -93,9 +93,6 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 			else
 				cost += penalty;
 		}
-		else {
-				cost += penalty;
-		}
 	}
 
 	// Verifica se a quantidade carregada é menor que a capacidade permitida
