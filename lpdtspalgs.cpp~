@@ -53,7 +53,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	
 		// Verifica restrição de tempo
 		
-		if (tl > (clock() - st) / CLOCKS_PER_SEC)
+		if (tl < (clock() - st) / CLOCKS_PER_SEC)
 			return false;
 		
 		cost = -1;
