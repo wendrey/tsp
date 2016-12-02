@@ -14,6 +14,7 @@
 #include "SampleDecoder.h"
 
 SampleDecoder::SampleDecoder(const LpdTspInstance &inst) {
+	l = new LdpTspInstance();
 	l = inst;
 }
 
