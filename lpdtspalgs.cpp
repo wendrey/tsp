@@ -161,7 +161,7 @@ const std::vector<double> brkga(const LpdTspInstance &l, int tl) {
 	
 	SampleDecoder decoder(l);			// initialize the decoder
 	
-	const long unsigned rngSeed = 1;	// seed to the random number generator
+	const long unsigned rngSeed = 0;	// seed to the random number generator
 	MTRand rng(rngSeed);				// initialize the random number generator
 	
 	// initialize the BRKGA-based heuristic

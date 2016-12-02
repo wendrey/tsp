@@ -51,7 +51,7 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 
 	for (DNodeIt n(l->g); n != INVALID; ++n) {
 		if (n != l->depot) { 
-			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
+			ranking[k] = std::pair <double,DNode> (k,n);
 			k++;
 		}
 	}
