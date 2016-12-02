@@ -170,18 +170,20 @@ const std::vector<double> brkga(const LpdTspInstance &l, int tl) {
 	unsigned generation = 0;		// current generation
 	const unsigned X_INTVL = 100;	// exchange best individuals at every 100 generations
 	const unsigned X_NUMBER = 3;	// exchange top 3 best
-	const unsigned MAX_GENS = 1000;	// run for 1000 gens
 	
-	do {
+	// Enquanto houver tempo, evolui a população 
+	
+	while (tl > (clock() - st) / CLOCKS_PER_SEC) {
+
 		algorithm.evolve();	// evolve the population for one generation
 		
-		if((++generation) % X_INTVL == 0) {
+		if((++generation) % X_INTVL == 0) 
 			algorithm.exchangeElite(X_NUMBER);	// exchange top individuals
-		}
-		cout << "Tempo total: " << tl << " Tempo decorrido: " << (clock() - st) / CLOCKS_PER_SEC << endl; 
-	} while ((tl > (clock() - st) / CLOCKS_PER_SEC));
+
+	}
 
 	// Retorna o melhor resultado obtido
+
 	return algorithm.getBestChromosome();
 
 }
