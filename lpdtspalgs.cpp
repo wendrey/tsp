@@ -168,9 +168,9 @@ const std::vector<double> brkga(const LpdTspInstance &l, int tl) {
 	BRKGA< SampleDecoder, MTRand > algorithm(n, p, pe, pm, rhoe, decoder, rng, K, MAXT);
 	
 	unsigned generation = 0;		// current generation
-	const unsigned X_INTVL = 100;	// exchange best individuals at every 20 generations
+	const unsigned X_INTVL = 100;	// exchange best individuals at every 100 generations
 	const unsigned X_NUMBER = 3;	// exchange top 3 best
-	const unsigned MAX_GENS = 1000;	// run for 100 gens
+	const unsigned MAX_GENS = 1000;	// run for 1000 gens
 	
 	do {
 		algorithm.evolve();	// evolve the population for one generation
@@ -226,6 +226,8 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			cost += l.weight[o];
 	}
 	
+	cout << "Arestas ok" << endl;
+	
 	// Verifica a ordem de coleta e entrega dos itens
 	
 	vector<bool> ss(l.k, false);
@@ -249,6 +251,8 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		}
 	}
 
+	cout << "Ordem ok" << endl;
+
 	// Verifica se a quantidade carregada é menor que a capacidade permitida
 
 	double load = 0.0;
@@ -263,6 +267,10 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		if(load > l.capacity)
 			return false;
 	}
+
+	cout << "Capacidade ok" << endl;
+
+	// Retorna a solução viável encontrada
 
 	s.cost = cost;
 	s.tour = tour;
