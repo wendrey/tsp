@@ -53,7 +53,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	
 		// Verifica restrição de tempo
 		
-		if (tl < (clock() - st) / CLOCKS_PER_SEC)
+		if (tl > (clock() - st) / CLOCKS_PER_SEC)
 			return false;
 		
 		cost = -1;
@@ -179,7 +179,7 @@ const std::vector<double> brkga(const LpdTspInstance &l, int tl) {
 			algorithm.exchangeElite(X_NUMBER);	// exchange top individuals
 		}
 		cout << "Tempo total: " << tl << " Tempo decorrido: " << (clock() - st) / CLOCKS_PER_SEC << endl; 
-	} while (generation < MAX_GENS || (tl < (clock() - st) / CLOCKS_PER_SEC));
+	} while ((tl > (clock() - st) / CLOCKS_PER_SEC));
 
 	// Retorna o melhor resultado obtido
 	return algorithm.getBestChromosome();
