@@ -234,7 +234,7 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	
 	// Verifica a ordem de coleta e entrega dos itens
 	
-/*	vector<bool> ss(l.k, false);
+	vector<bool> ss(l.k, false);
 	vector<bool> tt(l.k, false);
 
 	for(int i = 1; i < (int)tour.size(); i++) {
@@ -251,7 +251,7 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 				return false;
 		}
 	}
-*/
+
 	cout << "Ordem ok" << endl;
 
 	// Verifica se a quantidade carregada é menor que a capacidade permitida

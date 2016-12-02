@@ -46,7 +46,7 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	
 	int k = 0;
 	double cost = 0.0;
-	int penalty = 1000000;
+	int penalty = DLB_MAX;
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
 	for (DNodeIt n(l->g); n != INVALID; ++n) {
