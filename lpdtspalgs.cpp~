@@ -147,7 +147,7 @@ bool constrHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 // Heurística do BRKGA para obter solução
 
-const std::vector<double> & brkga(const LpdTspInstance &l, int tl) {
+const std::vector<double> brkga(const LpdTspInstance &l, int tl) {
 
 	clock_t st = clock();		// Tempo máximo para rodar o algoritmo
 
@@ -182,8 +182,6 @@ const std::vector<double> & brkga(const LpdTspInstance &l, int tl) {
 	} while (generation < MAX_GENS);
 
 	// Retorna o melhor resultado obtido
-	
-	cout << "Cromosssomo: " << algorithm.getBestChromosome().size() << endl;	
 	return algorithm.getBestChromosome();
 
 }
