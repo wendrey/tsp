@@ -173,12 +173,13 @@ const std::vector<double> & brkga(const LpdTspInstance &l, int tl) {
 	const unsigned MAX_GENS = 100;	// run for 100 gens
 	
 	do {
+		cout << "BRKGA " << generation << endl;
 		algorithm.evolve();	// evolve the population for one generation
 		
 		if((++generation) % X_INTVL == 0) {
 			algorithm.exchangeElite(X_NUMBER);	// exchange top individuals
 		}
-	} while (generation < MAX_GENS || (tl < clock() - st / CLOCKS_PER_SEC));
+	} while (generation < MAX_GENS));
 
 	// Retorna o melhor resultado obtido
 	return algorithm.getBestChromosome();
