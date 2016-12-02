@@ -199,9 +199,6 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 
 	std::vector<double> chromosome = brkga(l, tl);
 
-	cout << "-------------------------------------------------" << endl;
-	return false;
-
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
 	for (DNodeIt n(l.g); n != INVALID; ++n) {
@@ -211,6 +208,9 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		}
 	}
 	
+	cout << "-------------------------------------------------" << endl;
+	return false;
+
 	vector <DNode> tour;
 	tour.push_back(l.depot);
 
