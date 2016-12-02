@@ -178,6 +178,7 @@ const std::vector<double> brkga(const LpdTspInstance &l, int tl) {
 		if((++generation) % X_INTVL == 0) {
 			algorithm.exchangeElite(X_NUMBER);	// exchange top individuals
 		}
+		cout << "Tempo total: " << tl << " Tempo decorrido: " << (clock() - st) / CLOCKS_PER_SEC << endl; 
 	} while (generation < MAX_GENS || (tl < (clock() - st) / CLOCKS_PER_SEC));
 
 	// Retorna o melhor resultado obtido
