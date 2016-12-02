@@ -179,7 +179,7 @@ const std::vector<double> & brkga(const LpdTspInstance &l, int tl) {
 		if((++generation) % X_INTVL == 0) {
 			algorithm.exchangeElite(X_NUMBER);	// exchange top individuals
 		}
-	} while (generation < MAX_GENS));
+	} while (generation < MAX_GENS);
 
 	// Retorna o melhor resultado obtido
 	return algorithm.getBestChromosome();
