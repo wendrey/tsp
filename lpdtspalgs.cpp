@@ -183,7 +183,7 @@ const std::vector<double> & brkga(const LpdTspInstance &l, int tl) {
 
 	// Retorna o melhor resultado obtido
 	
-	cout << "Cromosssomo: " << chromosome.size() << endl;	
+	cout << "Cromosssomo: " << algorithm.getBestChromosome().size() << endl;	
 	return algorithm.getBestChromosome();
 
 }
