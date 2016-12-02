@@ -173,7 +173,6 @@ const std::vector<double> brkga(const LpdTspInstance &l, int tl) {
 	const unsigned MAX_GENS = 1000;	// run for 100 gens
 	
 	do {
-		cout << "BRKGA " << generation << endl;
 		algorithm.evolve();	// evolve the population for one generation
 		
 		if((++generation) % X_INTVL == 0) {
