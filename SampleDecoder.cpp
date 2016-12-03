@@ -19,34 +19,17 @@ SampleDecoder::SampleDecoder(const LpdTspInstance &inst) {
 
 SampleDecoder::~SampleDecoder() { }
 
-// Runs in \Theta(n \log n):
+// Dado um cromossomo, devolve o custo do circuito gerado pelo mesmo
+// Atribui penalidades se encontrar alguma inviabilidade no circuito
+
 double SampleDecoder::decode(const std::vector< double >& chromosome) const {
-
-/*	std::vector< std::pair< double, unsigned > > ranking(chromosome.size());
-
-	for(unsigned i = 0; i < chromosome.size(); ++i) {
-		ranking[i] = std::pair< double, unsigned >(chromosome[i], i);
-	}
-
-	// Here we sort 'permutation', which will then produce a permutation of [n] in pair::second:
-	std::sort(ranking.begin(), ranking.end());
-
-	// permutation[i].second is in {0, ..., n - 1}; a permutation can be obtained as follows
-	std::list< unsigned > permutation;
-	for(std::vector< std::pair< double, unsigned > >::const_iterator i = ranking.begin();
-			i != ranking.end(); ++i) {
-		permutation.push_back(i->second);
-	}
-
-	// sample fitness is the first allele
-	return chromosome.front();
-*/
-
-	// ----------
 	
 	int k = 0;
 	double cost = 0.0;
 	int penalty = 10000;
+	
+	// Dado um cromossomo, gera uma sequência de vértices
+	
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
 	for (DNodeIt n(l->g); n != INVALID; ++n) {
@@ -109,6 +92,8 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 		if(load > l->capacity)
 			cost += penalty;
 	}
+
+	// Retorna o custo do circuito
 	
 	return cost;
 

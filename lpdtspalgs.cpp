@@ -230,8 +230,6 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 			cost += l.weight[o];
 	}
 	
-	cout << "Arestas ok" << endl;
-	
 	// Verifica a ordem de coleta e entrega dos itens
 	
 	vector<bool> ss(l.k, false);
@@ -252,8 +250,6 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		}
 	}
 
-	cout << "Ordem ok" << endl;
-
 	// Verifica se a quantidade carregada é menor que a capacidade permitida
 
 	double load = 0.0;
@@ -268,8 +264,6 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		if(load > l.capacity)
 			return false;
 	}
-
-	cout << "Capacidade ok" << endl;
 
 	// Retorna a solução viável encontrada
 
