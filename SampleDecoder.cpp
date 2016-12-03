@@ -110,9 +110,6 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 			cost += penalty;
 	}
 	
-	if (cost < 1000000)
-		cout << "Got: " << cost;
-		
 	return cost;
 
 }
