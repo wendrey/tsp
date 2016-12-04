@@ -28,12 +28,10 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	double cost = 0.0;
 	int penalty = 10000;
 	
-	// Dado um cromossomo, gera uma sequência de vértices
+	// Cria um par cromossomo - vértice
 	
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
-	cout << "cromossomo: " ;
-	
 	for (DNodeIt n(l->g); n != INVALID; ++n) {
 		if (n != l->depot) { 
 			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
@@ -42,16 +40,17 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 		}
 	}
 	
+	// Cria o tour, iniciando no depósito
+	
 	vector <DNode> tour;
 	tour.push_back(l->depot);
+	
+	// Ordena o cromosso para obter uma sequência de vértices
+	
 	std::sort(ranking.begin(), ranking.end());
 
-	cout << " cromossomo: ";
-
 	for(std::vector<std::pair<double,DNode>>::const_iterator i = ranking.begin(); i != ranking.end(); ++i)	
-{		tour.push_back(i->second);
-		cout << l->vname[i->second];	} 
-		cout << endl;
+		tour.push_back(i->second);
 
 	// Verifica se existe aresta ligando os vertices
 
