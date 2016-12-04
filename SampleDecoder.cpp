@@ -32,6 +32,7 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
+
 	for (DNodeIt n(l->g); n != INVALID; ++n) {
 		if (n != l->depot) { 
 			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
@@ -42,9 +43,13 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	vector <DNode> tour;
 	tour.push_back(l->depot);
 
+	cout << "cromossomo: ";
+
 	for(std::vector<std::pair<double,DNode>>::const_iterator i = ranking.begin(); i != ranking.end(); ++i)	
-		tour.push_back(i->second);
-	
+{		tour.push_back(i->second);
+		cout << l.vname(i->second);	} 
+		cout << endl;
+
 	// Verifica se existe aresta ligando os vertices
 
 	for(int i = 0; i < (int) tour.size(); i++) {

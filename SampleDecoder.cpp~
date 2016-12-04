@@ -19,6 +19,9 @@ SampleDecoder::SampleDecoder(const LpdTspInstance &inst) {
 
 SampleDecoder::~SampleDecoder() { }
 
+// Dado um cromossomo, devolve o custo do circuito gerado pelo mesmo
+// Atribui penalidades se encontrar alguma inviabilidade no circuito
+
 double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	
 	int k = 0;
@@ -28,6 +31,7 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	// Dado um cromossomo, gera uma sequência de vértices
 	
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
+
 
 	for (DNodeIt n(l->g); n != INVALID; ++n) {
 		if (n != l->depot) { 
@@ -39,9 +43,13 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	vector <DNode> tour;
 	tour.push_back(l->depot);
 
+	cout << "cromossomo: ";
+
 	for(std::vector<std::pair<double,DNode>>::const_iterator i = ranking.begin(); i != ranking.end(); ++i)	
-		tour.push_back(i->second);
-	
+{		tour.push_back(i->second);
+		cout << i->second;	} 
+		cout << endl;
+
 	// Verifica se existe aresta ligando os vertices
 
 	for(int i = 0; i < (int) tour.size(); i++) {
