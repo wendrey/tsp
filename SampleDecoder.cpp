@@ -47,7 +47,7 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 
 	for(std::vector<std::pair<double,DNode>>::const_iterator i = ranking.begin(); i != ranking.end(); ++i)	
 {		tour.push_back(i->second);
-		cout << l->vname(i->second);	} 
+		cout << l->vname[i->second];	} 
 		cout << endl;
 
 	// Verifica se existe aresta ligando os vertices
