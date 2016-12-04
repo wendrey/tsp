@@ -36,7 +36,6 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 		if (n != l->depot) { 
 			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
 			k++;
-			cout << chromosome[k];
 		}
 	}
 	
