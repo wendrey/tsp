@@ -213,6 +213,8 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	
 	vector <DNode> tour;
 	tour.push_back(l.depot);
+	std::sort(ranking.begin(), ranking.end());
+
 
 	for(std::vector<std::pair<double,DNode>>::const_iterator i = ranking.begin(); i != ranking.end(); ++i)	
 		tour.push_back(i->second);
@@ -229,8 +231,6 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		else
 			cost += l.weight[o];
 	}
-	
-	cout << "Arestas ok" << endl;
 	
 	// Verifica a ordem de coleta e entrega dos itens
 	
@@ -252,8 +252,6 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		}
 	}
 
-	cout << "Ordem ok" << endl;
-
 	// Verifica se a quantidade carregada é menor que a capacidade permitida
 
 	double load = 0.0;
@@ -268,8 +266,6 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 		if(load > l.capacity)
 			return false;
 	}
-
-	cout << "Capacidade ok" << endl;
 
 	// Retorna a solução viável encontrada
 

@@ -213,6 +213,7 @@ bool metaHeur(const LpdTspInstance &l, LpdTspSolution  &s, int tl) {
 	
 	vector <DNode> tour;
 	tour.push_back(l.depot);
+	std::sort(ranking.begin(), ranking.end());
 
 	for(std::vector<std::pair<double,DNode>>::const_iterator i = ranking.begin(); i != ranking.end(); ++i)	
 		tour.push_back(i->second);
