@@ -26,7 +26,7 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	
 	int k = 0;
 	double cost = 0.0;
-	int penalty = 10000;
+	int penalty = 100000;
 	
 	// Cria um par cromossomo - vértice
 	
