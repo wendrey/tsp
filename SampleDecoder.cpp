@@ -32,18 +32,19 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	
 	std::vector <std::pair<double,DNode>> ranking(chromosome.size());
 
-
+	cout << "cromossomo: " ;
 	for (DNodeIt n(l->g); n != INVALID; ++n) {
 		if (n != l->depot) { 
 			ranking[k] = std::pair <double,DNode> (chromosome[k],n);
 			k++;
+			cout << chromosome[k];
 		}
 	}
 	
 	vector <DNode> tour;
 	tour.push_back(l->depot);
 
-	cout << "cromossomo: ";
+	cout << " cromossomo: ";
 
 	for(std::vector<std::pair<double,DNode>>::const_iterator i = ranking.begin(); i != ranking.end(); ++i)	
 {		tour.push_back(i->second);
